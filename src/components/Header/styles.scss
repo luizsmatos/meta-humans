@@ -1,0 +1,40 @@
+header.header {
+  padding: 2rem 1.5rem;
+  width: 100%;
+
+  div {
+    height: 100%;
+    max-width: 1820px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    a {
+      color: var(--white);
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.5rem;
+      padding-bottom: 2rem;
+      
+      transition: all 0.2s;
+
+      &:hover {
+        color: var(--yellow-500);
+        filter: brightness(0.9);
+      }
+
+      &:last-child {
+        margin-left: 2rem;
+      }
+    }
+  }
+
+  div.search {
+    margin-top: 1.5rem;
+  }
+
+  img {
+    max-width: 250px;
+  }
+}
