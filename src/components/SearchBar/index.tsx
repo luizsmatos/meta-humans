@@ -1,9 +1,7 @@
-import {
-  FormControl,
-  InputLabel,
-  FilledInput,
-  InputAdornment,
-} from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import FilledInput from '@material-ui/core/FilledInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import Search from '@material-ui/icons/Search';
 import { useAppContext } from '../../hooks/useAppContext';
 
