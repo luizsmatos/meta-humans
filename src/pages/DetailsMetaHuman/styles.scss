@@ -1,0 +1,35 @@
+.contentDetails {
+  background: #fff;
+  opacity: 0.7;
+  border-radius: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: calc(80vh - 100px);
+  margin-top: 1rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  padding: 1rem;
+
+  div.container-img {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    img {
+      max-width: 300px;
+      object-fit: cover;
+    }
+  }
+
+  div.container-hab {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
