@@ -10,7 +10,6 @@ interface SkillsProps {
 }
 
 const Skills = ({ metahuman }: SkillsProps) => {
-  const colors = ['#000', 'error', 'warning', 'primary', 'secondary', 'sucess'];
   const powerstats =
     Object.keys(metahuman).length > 0
       ? Object.entries(metahuman.powerstats)
@@ -18,7 +17,7 @@ const Skills = ({ metahuman }: SkillsProps) => {
 
   return (
     <div>
-      {powerstats.map(([key, value], index) => (
+      {powerstats.map(([key, value]) => (
         <CardContent key={value}>
           <Typography sx={{ color: '#000000' }}>
             {`${capitalize(key)}: ${value}`}

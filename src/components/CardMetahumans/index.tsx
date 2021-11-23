@@ -5,6 +5,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
 import { useNavigate } from 'react-router-dom';
 import Metahumans from '../../types';
+import { useAppContext } from '../../hooks/useAppContext';
 
 interface MetahumanProps {
   metahuman: Metahumans;
@@ -12,11 +13,21 @@ interface MetahumanProps {
 
 const CardMetahumans = ({ metahuman }: MetahumanProps) => {
   const navigate = useNavigate();
+  const { isCombat, handleSetCharacters } = useAppContext();
+
+  const handleClick = (id: number) => {
+    if (isCombat) {
+      handleSetCharacters(id);
+      return;
+    }
+    navigate(`/metahumans/${id}`);
+  };
+
   return (
     <Card sx={{ borderRadius: '1rem' }}>
       <CardActionArea
         sx={{ ':hover': { filter: 'contrast(0.7)' } }}
-        onClick={() => navigate(`/metahumans/${metahuman.id}`)}
+        onClick={() => handleClick(metahuman.id)}
       >
         <CardMedia
           component="img"

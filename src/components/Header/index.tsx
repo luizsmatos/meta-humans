@@ -3,19 +3,23 @@ import SearchBar from '../SearchBar';
 
 import logoImage from '../../assets/images/logoMeta.png';
 import './styles.scss';
+import { useAppContext } from '../../hooks/useAppContext';
 
 interface HeaderProps {
   isSearch: boolean;
 }
 
 const Header = ({ isSearch }: HeaderProps) => {
+  const { handleClickOpen } = useAppContext();
   return (
     <header className="header">
       <div>
         <img src={logoImage} alt="logo" />
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/combat">Combate</Link>
+          <button type="button" onClick={handleClickOpen}>
+            Combate
+          </button>
         </nav>
       </div>
       {!!isSearch && <SearchBar />}
