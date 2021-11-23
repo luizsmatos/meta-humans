@@ -29,9 +29,14 @@
     font-size: 87.5%;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
   
 
 body {
+  background: var(--gray-900);
   color: var(--white);
 }
 
