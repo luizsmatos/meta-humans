@@ -1,0 +1,14 @@
+.contentHumans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+  grid-template-rows: auto;
+  grid-gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 0 3rem;
+
+  h1 {
+    margin: 0 auto;
+    text-align: center;
+  }
+}
