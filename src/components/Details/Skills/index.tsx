@@ -1,8 +1,11 @@
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import { useAppContext } from '../../../hooks/useAppContext';
+
 import Metahumans from '../../../types';
 import capitalize from '../../../util/capitalize';
+
 import './styles.scss';
 
 interface SkillsProps {
@@ -10,6 +13,10 @@ interface SkillsProps {
 }
 
 const Skills = ({ metahuman }: SkillsProps) => {
+  const { characters } = useAppContext();
+  const anotherCombatCharacter = characters.find(
+    (m) => metahuman.id !== m.id
+  )?.powerstats;
   const powerstats =
     Object.keys(metahuman).length > 0
       ? Object.entries(metahuman.powerstats)
@@ -17,23 +24,31 @@ const Skills = ({ metahuman }: SkillsProps) => {
 
   return (
     <div>
-      {powerstats.map(([key, value]) => (
-        <CardContent key={value}>
-          <Typography sx={{ color: '#000000' }}>
-            {`${capitalize(key)}: ${value}`}
-          </Typography>
-          <LinearProgress
-            sx={{
-              height: '1rem',
-              borderRadius: '1rem',
-              width: '60%',
-            }}
-            variant="determinate"
-            color="info"
-            value={value}
-          />
-        </CardContent>
-      ))}
+      {powerstats.map(([key, value]) => {
+        let valueToShow = `${capitalize(key)}: ${value}`;
+
+        if (anotherCombatCharacter) {
+          valueToShow =
+            value > anotherCombatCharacter[key]
+              ? `${capitalize(key)}: ${value}✔️`
+              : `${capitalize(key)}: ${value}❌`;
+        }
+        return (
+          <CardContent key={key}>
+            <Typography className="skills">{valueToShow}</Typography>
+            <LinearProgress
+              sx={{
+                height: '1rem',
+                borderRadius: '1rem',
+                width: '100%',
+              }}
+              variant="determinate"
+              color="info"
+              value={value}
+            />
+          </CardContent>
+        );
+      })}
     </div>
   );
 };

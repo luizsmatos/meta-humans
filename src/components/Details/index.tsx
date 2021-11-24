@@ -3,6 +3,7 @@ import Infos from './Infos';
 import Skills from './Skills';
 
 import Metahumans from '../../types';
+import './styles.scss';
 
 interface DetailsProps {
   detailsMetaHuman: Metahumans;
