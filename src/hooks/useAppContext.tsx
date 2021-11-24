@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import api from '../services/api';
 import Metahumans from '../types';
 
@@ -90,7 +91,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         const characterIsAlreadySelected = character.find((c) => c.id === id);
 
         if (characterIsAlreadySelected) {
-          global.alert('Escolha um personagem diferente!');
+          toast.error('Escolha um personagem diferente!');
           return;
         }
 
@@ -100,9 +101,9 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         setCharacters(character);
         return;
       }
-      global.alert('Você pode escolher somente dois personagens!');
+      toast.error('Você deve escolher somente dois personagens!');
     } catch (err) {
-      global.alert(err);
+      toast.error('Erro ao selecionar o personagem');
     }
   };
 
