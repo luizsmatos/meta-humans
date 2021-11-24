@@ -11,11 +11,13 @@ interface AppContextData {
   filteredMetahumans: Metahumans[];
   open: boolean;
   isCombat: boolean;
-  handleClose: () => void;
-  handleClickOpen: () => void;
+  handleCloseDialogCombat: () => void;
+  handleClickOpenDialogCombat: () => void;
   handleStartCombat: () => void;
   characters: Metahumans[];
   handleSetCharacters: (id: number) => void;
+  modalCombat: boolean;
+  handleModalCombatClose: () => void;
 }
 
 const AppContext = createContext({} as AppContextData);
@@ -29,13 +31,14 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   const [dataMetahumans, setDataMetahumans] = useState<Metahumans[]>([]);
   const [filteredMetahumans, setFilteredMetahumans] =
     useState<Metahumans[]>(dataMetahumans);
+  const [characters, setCharacters] = useState<Metahumans[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [isCombat, setIsCombat] = useState(false);
-  const [characters, setCharacters] = useState<Metahumans[]>([]);
   const [modalCombat, setModalCombat] = useState(false);
 
+  // Faz a busca de todos os personagens e salva no estado.
   useEffect(() => {
     const getMetahumans = async () => {
       try {
@@ -51,6 +54,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     getMetahumans();
   }, []);
 
+  // Faz a busca de todos os personagens filtrados.
   useEffect(() => {
     const filterMetahumans = dataMetahumans.filter((metahuman) =>
       metahuman.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -58,25 +62,26 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     setFilteredMetahumans(filterMetahumans);
   }, [searchTerm]);
 
-  const handleClickOpen = () => {
+  // Abre o dialog de combate.
+  const handleClickOpenDialogCombat = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  // Fecha o dialog de combate.
+  const handleCloseDialogCombat = () => {
     setOpen(false);
   };
 
+  // Inicia o combat quando é clicado em Começar no dialog.
   const handleStartCombat = () => {
     setOpen(false);
     setIsCombat(true);
     navigate('/');
   };
 
+  // Adiciona o personagem selecionado no combate.
   const handleSetCharacters = (id: number) => {
     try {
-      if (characters.length === 2) {
-        setModalCombat(true);
-      }
       if (isCombat && characters.length <= 1) {
         const getCharacter = dataMetahumans.find(
           (character) => character.id === id
@@ -101,6 +106,20 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     }
   };
 
+  // Fecha o modal de combate, resetando os personagens. Saindo do modo combate.
+  const handleModalCombatClose = () => {
+    setModalCombat(false);
+    setIsCombat(false);
+    setCharacters([]);
+  };
+
+  // Abre o modal de combate, quando 2 personagens são escolhidos.
+  useEffect(() => {
+    if (characters.length === 2) {
+      setModalCombat(true);
+    }
+  }, [characters]);
+
   const context = {
     loading,
     setSearchTerm,
@@ -108,12 +127,13 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     filteredMetahumans,
     open,
     isCombat,
-    handleClose,
-    handleClickOpen,
+    handleCloseDialogCombat,
+    handleClickOpenDialogCombat,
     handleStartCombat,
     characters,
     handleSetCharacters,
     modalCombat,
+    handleModalCombatClose,
   };
 
   return <AppContext.Provider value={context}>{children}</AppContext.Provider>;

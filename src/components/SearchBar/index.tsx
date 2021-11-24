@@ -20,6 +20,7 @@ const SearchBar = () => {
     >
       <InputLabel htmlFor="outlined-adornment-search">Pesquisar</InputLabel>
       <FilledInput
+        placeholder="Digite seu personagem"
         id="outlined-adornment-search"
         sx={{ width: '100%', borderRadius: '10px' }}
         onChange={(e) => setSearchTerm(e.target.value)}

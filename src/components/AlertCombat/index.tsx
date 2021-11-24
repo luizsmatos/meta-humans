@@ -7,12 +7,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { useAppContext } from '../../hooks/useAppContext';
 
 const AlertCombat = () => {
-  const { open, handleClose, handleStartCombat } = useAppContext();
+  const { open, handleCloseDialogCombat, handleStartCombat } = useAppContext();
   return (
     <div>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={handleCloseDialogCombat}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -26,7 +26,7 @@ const AlertCombat = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Desistir</Button>
+          <Button onClick={handleCloseDialogCombat}>Desistir</Button>
           <Button onClick={handleStartCombat} autoFocus>
             Começar
           </Button>

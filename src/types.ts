@@ -2,12 +2,7 @@ export default interface Metahumans {
   id: number;
   name: string;
   powerstats: {
-    intelligence: number;
-    strength: number;
-    speed: number;
-    durability: number;
-    power: number;
-    combat: number;
+    [key: string]: number;
   };
   appearance: {
     gender: string;

@@ -10,14 +10,14 @@ interface HeaderProps {
 }
 
 const Header = ({ isSearch }: HeaderProps) => {
-  const { handleClickOpen } = useAppContext();
+  const { handleClickOpenDialogCombat } = useAppContext();
   return (
     <header className="header">
       <div>
         <img src={logoImage} alt="logo" />
         <nav>
           <Link to="/">Home</Link>
-          <button type="button" onClick={handleClickOpen}>
+          <button type="button" onClick={handleClickOpenDialogCombat}>
             Combate
           </button>
         </nav>

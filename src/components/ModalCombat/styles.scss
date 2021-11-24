@@ -1,0 +1,25 @@
+.modal-combat {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #3CB371;
+    }
+  }
+
+  section.characters {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1.2rem;
+    justify-content: center;
+    align-items: center;
+
+  }
+}
