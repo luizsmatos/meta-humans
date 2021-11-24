@@ -27,7 +27,13 @@ const DetailsMetaHuman = () => {
   return (
     <>
       <Header isSearch={false} />
-      {loading ? <Loading /> : <Details detailsMetaHuman={detailsMetaHuman} />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <section className="details">
+          <Details detailsMetaHuman={detailsMetaHuman} />
+        </section>
+      )}
     </>
   );
 };
